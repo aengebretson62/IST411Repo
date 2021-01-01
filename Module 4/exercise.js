@@ -1,38 +1,28 @@
-function validateANDadd() {
-    // place the values in the form into variables
-    var theNewWord = document.forms["myForm"]["newWord"].value;
-    var theNewNumber = document.forms["myForm"]["newNumber"].value;
-    // validate that something was entered as a word
-    if (theNewWord == "") {
-      // no word was entered so tell the user
-      alert("Please enter a word to check");
-      return false;
-    }
-    // validate that a 1 or 2 was entered as a number
-    else if ((theNewNumber != 1) && (theNewNumber != 2)) {
-      // a 1 or 2 was not entered as the number so tell user and clear the field
-      alert("Please enter a 1 or 2 for the algorithm to use.");
-      document.forms["myForm"]["newNumber"].value = "";
-      return false;
-    }
-    else {
-        // a word was entered and a 1 or 2 was entered as the number so add it to the table
-        // build the Javascript object
-        var obj = { word: theNewWord, number: theNewNumber };
-        // convert the Javascript object to a JSON string
-        var myJSON = JSON.stringify(obj);
-        // add the string to the table
-        var tableRef = document.getElementById("myJSONtable");
-        (tableRef.insertRow(tableRef.rows.length)).innerHTML = myJSON + ",";
-        // erase the form fields
-        document.forms["myForm"]["newWord"].value = "";
-        document.forms["myForm"]["newNumber"].value = "";
-        return true;
-    }
-  }
+async function getBaconipsum() {
+  // first build the API call string by starting with the URL
+  var apiString = "https://baconipsum.com/api/";
+  // next add the parameters to the string using the drop down lists
+  var theNewParagraphs = document.getElementById("newParagraphs").value;
+  apiString = apiString + "?type=meat-and-filler&paras=" + theNewParagraphs;
+  alert(apiString);  // show the API string
 
-  function clearFile() {
-    // clear the table of all rows
-    var tableRef = document.getElementById("myJSONtable");
-    tableRef.innerHTML = " ";
-  }
+  // now make the API call to the web service using the string and store what is returned in response
+  var response = await fetch(apiString);
+
+  // finally, print the response in the various formats
+  document.getElementById("myRawData").innerHTML = "";   // clear what was previously shown
+  document.getElementById("myFormattedData").innerHTML = "";   // clear what was previously shown
+
+  var jsonData = await response.json();  // read the response as JSON
+  
+  // stringify and print out the JSON object in the RawData section
+  document.getElementById("myRawData").innerHTML = JSON.stringify(jsonData);
+ 
+  // loop through the JSON object one paragraph at a time and print each in the FormattedData section
+  for (var para in jsonData) {   
+      document.getElementById("myFormattedData").innerHTML += "<p>" + jsonData[para] + "</p>";
+    }
+
+  return true;
+}
+
