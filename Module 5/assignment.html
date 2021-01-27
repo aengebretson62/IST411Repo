@@ -15,8 +15,10 @@
  
     <!-- Custom styles for this template -->
     <link href="assignment.css" rel="stylesheet">
+
+    <script src="assignment.js"></script>  
   </head>
-  <body>
+  <body onload="getAnotherQuote()">
     
 <header class="site-header sticky-top py-1">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
@@ -31,8 +33,8 @@
 <main>
   <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
-      <h1 class="display-4 fw-normal" id="theQuote">This will be the quote!</h1>
-      <p class="lead fw-normal" id="theAuthor">- this will be the author</p>
+      <h1 class="display-12 fw-normal" id="theQuote"></h1>
+      <p class="lead fw-normal" id="theAuthor"></p>
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
@@ -44,9 +46,19 @@
         <h2 class="display-5">Find another quote!</h2>
       </div>
       <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-        <p class="py-2 d-none d-md-inline-block">The search items will go here.</p>
+        <p class="py-2 d-none d-md-inline-block">
+            
+            <label for="newLength">How long of a quote do you want to see?</label>
+            <br />
+            <select id="newLength">
+                <option value=1>Show me a short one.</option>
+                <option value=2>Not too short, not too long.</option>
+                <option value=3>Make it long!</option>
+            </select><br />
+
+        </p>
         <br />
-        <a class="btn btn-outline-secondary" href="#">Get another quote!</a>
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="getAnotherQuote()">Get another quote!</button>
     </div>
     </div>
   </div>
@@ -62,8 +74,8 @@
     <div class="col-6 col-md">
       <h5>Resources</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="link-secondary" href="https://getbootstrap.com">getbootstrap.com</a></li>
-        <li><a class="link-secondary" href="https://www.google.com">Google</a></li>
+        <li><a class="link-secondary" href="https://getbootstrap.com">Bootstrap</a></li>
+        <li><a class="link-secondary" href="https://github.com/lukePeavey/quotable">Random Quote API</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
