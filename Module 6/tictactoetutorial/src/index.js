@@ -53,6 +53,8 @@ class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
+      gameOver: false,
+      squareUsed: false,
     };
   }
 
@@ -60,10 +62,16 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length-1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]){
+    if (calculateWinner(squares)) {                // added to check if game over 
+      this.setState ({gameOver: true});
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    else if (squares[i]){
+      this.setState({squareUsed: true});
+      return;
+    }
+    this.setState({squareUsed: false});             // added to check if square used
+    squares[i] = this.state.xIsNext ? 'K' : 'C';
     this.setState({
       history: history.concat([{
         squares: squares
@@ -100,9 +108,15 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
+      if (this.state.gameOver) {
+        status = status + '  --> GAME OVER!'
+      }
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.state.xIsNext ? 'K' : 'C');
+      if (this.state.squareUsed) {
+        status = status + '  --> THAT SQUARE IS TAKEN!'
     }
+  }
 
     return (
       <div className="game">
@@ -131,6 +145,9 @@ function calculateWinner(squares) {
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
+    [0, 2, 6],
+    [0, 2, 8],
+    [2, 6, 8],
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
