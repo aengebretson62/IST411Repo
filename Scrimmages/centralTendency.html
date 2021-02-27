@@ -16,11 +16,13 @@
             <form name="myForm">
                 Minimum value of numbers: <input type="number" id="minValue" name="minValue" value=""><br />
                 Maximum value of numbers: <input type="number" id="maxValue" name="maxValue" value=""><br />
-                <p id="numberPrompt">Enter a number: <input type="number" id="newNumber" name="newNumber" value=""></p>
-                <input id="btnAdd" type="button" value="Add the number" onclick="validateANDadd()">
-                <br /> <br />
-                <input id="btnClear" type="button" value="Clear everything" onclick="clearAll()">
+                <p id="numberPrompt">Enter a number: <input type="number" id="newNumber" name="newNumber" value="">
+                <input id="btnAdd" type="button" value="Include" onclick="validateANDadd()"></p>
             </form>
+            <br /> <br /><br /><br />
+            <div class = "center-button">
+                <input id="btnClear" type="button" value="Clear everything" onclick="clearAll()">
+            </div>
         </div>
         <div class="myflexboxColumn">
             <h2>Numbers entered so far:</h2>
@@ -31,7 +33,7 @@
             <h2>Central tendencies</h2>
             <p>Mean: <label id="theMean">n/a</label></p>
             <p>Median: <label id="theMedian">n/a</label></p>
-            <p>Mode: <label id="theMode">n/a</label></p>
+            <p>Mode(s): <label id="theMode">n/a</label></p>
         </div>
     </div>    
 </body>

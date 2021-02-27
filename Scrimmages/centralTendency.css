@@ -1,6 +1,10 @@
 * {
     box-sizing: border-box;
   }
+
+  .center-button {
+    text-align: center;
+  }
   
   /* Container for flexboxes */
   .myflexboxRow {
