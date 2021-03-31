@@ -63,7 +63,7 @@ function cipher1 (someJSON) {
           newChar = String.fromCharCode(newCharCode+13)              // change the character
         else if ((newCharCode >= 110)&&(newCharCode <= 122))    // check for n-z
           newChar = String.fromCharCode(newCharCode-13);             // change the character
-      newPara += newChar;          // add the new character to the paragraph
+        newPara += newChar;          // add the new character to the paragraph
       }  // end for each character
 
     newJSON.push(newPara);   // add the new encrypted paragraph array

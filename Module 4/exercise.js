@@ -3,7 +3,7 @@ async function getBaconipsum() {
   var apiString = "https://baconipsum.com/api/";
   // next add the parameters to the string using the drop down lists
   var theNewParagraphs = document.getElementById("newParagraphs").value;
-  apiString = apiString + "?type=meat-and-filler&paras=" + theNewParagraphs;
+  apiString = apiString + "?type=meat&paras=" + theNewParagraphs;
   alert(apiString);  // show the API string
 
   // now make the API call to the web service using the string and store what is returned in response
@@ -13,7 +13,7 @@ async function getBaconipsum() {
   document.getElementById("myRawData").innerHTML = "";   // clear what was previously shown
   document.getElementById("myFormattedData").innerHTML = "";   // clear what was previously shown
 
-  var jsonData = await response.json();  // read the response as JSON
+  var jsonData = response.json();  // read the response as JSON
   
   // stringify and print out the JSON object in the RawData section
   document.getElementById("myRawData").innerHTML = JSON.stringify(jsonData);
